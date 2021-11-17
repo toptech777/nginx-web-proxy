@@ -13,6 +13,7 @@ services:
       - certs:/etc/nginx/certs:ro
       - dhparam:/etc/nginx/dhparam
       - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./config/custom_proxy.conf:/etc/nginx/conf.d/custom_proxy.conf:ro
 
   letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
@@ -22,6 +23,7 @@ services:
     volumes:
       - certs:/etc/nginx/certs:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./config/custom_proxy.conf:/etc/nginx/conf.d/custom_proxy.conf:ro
     depends_on:
       - nginx-proxy
 
